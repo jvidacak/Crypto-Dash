@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
+import Spinner from "../components/Spinner";
+import CoinChart from "../components/CoinChart";
 const API_URL = import.meta.env.VITE_COIN_API_URL;
+
 
 const CoinDetails = () => {
   const { id } = useParams();
@@ -33,7 +36,7 @@ const CoinDetails = () => {
         {coin ? `${coin.name} (${coin.symbol.toUpperCase()})` : "Coin Details"}
       </h1>
 
-      {loading && <p>Loading...</p>}
+      {loading && <Spinner />}
       {error && <p>{error.message}</p>}
 
       {!loading && !error && (
@@ -84,6 +87,8 @@ const CoinDetails = () => {
             </h4>
           </div>
 
+          <CoinChart coin={coin.id} />
+
           <div className="coin-details-links">
             {coin.links.homepage[0] && (
               <p>
@@ -110,14 +115,13 @@ const CoinDetails = () => {
                 </a>
               </p>
             )}
-            { coin.categories.length > 0 && (
-                <p>Categories : {coin.categories.join(", ")}</p>
+            {coin.categories.length > 0 && (
+              <p>Categories : {coin.categories.join(", ")}</p>
             )}
           </div>
         </>
       )}
-        {!loading && !error && !coin && <p>No data found!</p>}
-
+      {!loading && !error && !coin && <p>No data found!</p>}
     </div>
   );
 };
