@@ -10,10 +10,10 @@ const AboutPage = () => {
             </p>
             <p>
                 This project is built as part of a learning experience and is not intended for commercial use
-                the
             </p>
             <p>
                 source code is available on GitHub
+                https://github.com/jvidacak/Crypto-Dash
             </p>
         </div>
     );
